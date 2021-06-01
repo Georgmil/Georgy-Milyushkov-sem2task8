@@ -19,25 +19,24 @@ void preorder(treenode *root,int *proverka){
     if(root==NULL)
         return;
 
-    if((root->value)%2 ==0){
+    if((root->value)%2==0){
         if(root->ves==0){
-            printf("Net, est nulevoj ves u chetnoj vershini\n");
             *proverka=0;
             return;
         }
-        else
-            *proverka=1;
     }
     preorder(root->left,proverka);
     preorder(root->right,proverka);
 
 }
-void individ(treenode *root, int proverka){
+void individ(int *proverka){
     printf("\n\n");
-    preorder(root,&proverka);
-    if(proverka==1){
-        printf("Da, vse chetnie vershini s nenulevim vesom");
-}
+    if(*proverka==0){
+        printf("indinvidualnoe zadanie: NET\n");
+        *proverka=1;
+    }
+    else
+        printf("Indinvualnoe zadanie: DA\n");
 
 }
 
@@ -80,13 +79,15 @@ treenode *insertnode(treenode *root, int value, int ves){
 
 }
 
-int minimal_r(treenode *root){
+treenode *minimal_r(treenode *root){
     treenode *tmp=root;
     while((tmp->left)!=NULL){
         tmp=tmp->left;
     }
-    return (tmp->value);
+    return (tmp);
 }
+
+
 
 treenode *deletenode(treenode *root, int value){
 
@@ -100,7 +101,7 @@ treenode *deletenode(treenode *root, int value){
         root->left=deletenode(root->left,value);
 
     else{
-        if(root->left==NULL && root->right==NULL){
+        if((root->left==NULL) && (root->right==NULL)){
             free(root);
             return NULL;
         }
@@ -115,9 +116,10 @@ treenode *deletenode(treenode *root, int value){
             return tmp;
         }
         else{
-            int rmin=minimal_r(root->right);
-            root->value=rmin;
-            root->right=deletenode(root->right,rmin);
+            //int rmin=minimal_r(root->right);
+            root->value=minimal_r(root->right)->value;
+            root->ves=minimal_r(root->right)->ves;
+            root->right=deletenode(root->right,minimal_r(root->right)->value);
         }
 
     }
@@ -143,18 +145,30 @@ int printik_v(){
     return vesik;
 }
 
-void samo(treenode **root,int z){
+void samo(treenode **root,int z,int *proverka){
     srand(z);
      int znachenie=printik_z();
             int vesik=printik_v();
+            if(vesik==0 &&znachenie%2==0)
+                *proverka=0;
             while(znachenie!=0){
             *root=insertnode(*root,znachenie,vesik);
                 znachenie=printik_z();
                 if(znachenie==0)
                     return;
-                vesik=printik_v();}
+                vesik=printik_v();
+                if(vesik==0 &&znachenie%2==0)
+                *proverka=0;}
 
 
 }
 
+void deltree(treenode *root){
+    if (root == NULL)
+        return;
+
+    deltree(root->left);
+    deltree(root->right);
+    free(root);
+}
 

@@ -30,31 +30,33 @@ int main(){
             for(int i=0;i<skolko;i++)
                 root=insertnode(root,rand(),rand()%3-1);
             printuem(root);
-            individ(root,proverka);
+            preorder(root,&proverka);
+            individ(&proverka);
             z++;
             break;
         case 2:
-            samo(&root,z);
+            samo(&root,z,&proverka);
             printf("\n\n Resultat:");
             printuem(root);
-            individ(root,proverka);
+            individ(&proverka);
             z++;
             break;
         case 3:
             int del;
             printf("Kakuju vershinu buded udaljat:\n");
             scanf("%d",&del);
-            deletenode(root,del);
+            root=deletenode(root,del);
             printf("Udalenie vipoloneno\n");
             printuem(root);
-            individ(root,proverka);
+            preorder(root,&proverka);
+            individ(&proverka);
             z++;
             break;
 
         case 10:
-            root=NULL;
             printf("Udalenie vsego dereva viploneno\n");
-            free(root);
+            deltree(root);
+            root=NULL;
             z++;
             break;
 

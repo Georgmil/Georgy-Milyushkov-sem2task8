@@ -1,13 +1,13 @@
 # depslib dependency file v1.0
-1622244661 source:c:\users\georgy milyushkov\documents\programirovanie\sem2task8\main.cpp
+1622587817 source:c:\users\georgy milyushkov\documents\programirovanie\sem2task8\main.cpp
 	<stdio.h>
 	<stdlib.h>
 	"task8.hpp"
 
-1622243889 source:c:\users\georgy milyushkov\documents\programirovanie\sem2task8\task8.cpp
+1622587968 source:c:\users\georgy milyushkov\documents\programirovanie\sem2task8\task8.cpp
 	"task8.hpp"
 
-1622244656 c:\users\georgy milyushkov\documents\programirovanie\sem2task8\task8.hpp
+1622587663 c:\users\georgy milyushkov\documents\programirovanie\sem2task8\task8.hpp
 	<stdio.h>
 	<stdlib.h>
 
